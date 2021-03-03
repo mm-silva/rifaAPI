@@ -26,29 +26,33 @@ $router->get('/key', function() {
 
 
 $router->group(['prefix' => 'user'], function () use ($router) {
-    // Matches "/api/register
+    // register user
     $router->post('register', 'AuthController@register');
 
-    // Matches "/api/login
+    // login user
     $router->post('login', 'AuthController@login');
 
-    //get one user by id
-    $router->get('users/{id}', 'UserController@singleUser');
+    // update user
+    $router->patch('/', 'UserController@update');
 
-    // Matches "/api/users
-    $router->get('users', 'UserController@allUsers');
+    // delete user
+    $router->patch('/{id}', 'UserController@update');
 });
 
 $router->group(['prefix' =>  'awards'], function () use ($router) {
-    // Matches "/api/register
-    $router->post('register', 'AuthController@register');
+    // list awards
+    $router->get('/', 'AwardsController@index');
 
-    // Matches "/api/login
-    $router->post('login', 'AuthController@login');
+    // update awards
+    $router->patch('/{id}', 'UserController@update');
 
-    //get one user by id
-    $router->get('users/{id}', 'UserController@singleUser');
+    // create a awards
+    $router->post('create', 'AuthController@store');
 
-    // Matches "/api/users
-    $router->get('users', 'UserController@allUsers');
+    // delete a awards
+    $router->delete('{id}', 'AwardsController@destroy');
+
+    // list of winners in the week
+    $router->delete('winners', 'WinnersController@index');
+
 });
