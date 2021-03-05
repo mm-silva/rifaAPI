@@ -18,12 +18,13 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique()->notNullable();
             $table->string('password');
+            $table->enum('status',['admin', 'user']);
             $table->string('phone',14);
             $table->string('cpf',14);
-            $table->string('endereco',30);
-            $table->string('cep',9);
-            $table->string('gateway_pay');
-            $table->date('created_at');
+            $table->string('endereco',30)->nullable();
+            $table->string('cep',9)->nullable();
+            $table->string('gateway_pay')->nullable();
+            $table->date('created_at')->nullable();
         });
     }
 
